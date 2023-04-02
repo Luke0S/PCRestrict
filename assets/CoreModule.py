@@ -1,4 +1,7 @@
 import time
+import os
+import json
+
 #import firebase_admin
 #from datetime import datetime
 #from firebase_admin import credentials
@@ -9,6 +12,19 @@ import time
 #firebase_admin.initialize_app(cred)
 #db = firestore.client()
 #collection = db.collection('core')
+
+pid = os.getpid()
+
+a_file = open("./values/global.json", "r")
+json_object = json.load(a_file)
+a_file.close()
+print(json_object)
+
+json_object["pid"] = pid
+
+a_file = open("./values/global.json", "w")
+json.dump(json_object, a_file)
+a_file.close()
 
 while True:
 
